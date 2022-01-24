@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apple.dao.AppleDao">
+
+	<!--结果集映射  pojo和数据库表中的字段不一样时使用-->
+	<resultMap id="AppleMap" type="com.apple.pojo.Apple">
+		<!--column数据库中的字段，property实体类中的属性-->
+		<result column="id" property="id"></result>
+		<result column="name" property="name"></result>
+		<result column="color" property="color"></result>
+	</resultMap>
+
+    <select id="listApple" resultType="com.apple.pojo.Apple">
+		select * from mybatis.apple
+	</select>
+
+    <delete id="delApple">
+		delete from mybatis.apple where id = #{id}
+	</delete>
+
+	<insert id="addApple">
+		insert into mybatis.apple values (#{id},#{name},#{color})
+	</insert>
+
+	<update id="updApple">
+		update mybatis.apple set name=#{name},color=#{color} where id = #{id}
+	</update>
+
+<!--    <select id="queryApple" resultType="com.apple.pojo.Apple" parameterType="int">-->
+	<select id="queryApple" resultType="com.apple.pojo.Apple" >
+		select * from mybatis.apple where  id = #{id}
+	</select>
+
+
+<!--	是用来map 的type，就可以#去map里的kV-->
+    <delete id="addAppleMap" parameterType="map">
+		insert into mybatis.apple values (#{iid},#{nname},#{ccolor})
+	</delete>
+
+    <select id="queryAppleLike" resultType="com.apple.pojo.Apple" parameterType="string">
+		select * from mybatis.apple where name like "%"#{key}"%"
+	</select>
+</mapper>
