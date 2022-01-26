@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.apple.dao.BoxDao">
+    <select id="listBox" resultType="com.apple.pojo.Box">
+        select b.id bid, b.size bsize, a.id aid, a.color acolor, a.name aname
+        from mybatis.box b,
+             mybatis.apple a
+        where b.id = a.id
+    </select>
+
+
+    <!--==========================一对多 用 collection===================-->
+
+    <!--方法一：结果嵌套查询=====================================================-->
+    <select id="getBox" resultMap="BoxApple">
+        select b.id bid, b.size bsize, a.id aid, a.color acolor, a.name aname
+        from mybatis.box b,
+             mybatis.apple a
+        where b.id = a.boxid
+          and b.id = #{boxid}
+    </select>
+    <resultMap id="BoxApple" type="Box">
+        <result property="id" column="bid"/>
+        <result property="size" column="bsize"/>
+        <collection property="apples" ofType="com.apple.pojo.Apple">
+            <result property="id" column="aid"/>
+            <result property="color" column="acolor"/>
+            <result property="name" column="aname"/>
+        </collection>
+    </resultMap>
+
+    <!--方法二：子查询嵌套=====================================================-->
+    <select id="getBox2" resultMap="BoxApple2">
+        select *
+        from mybatis.box
+        where id = #{boxid}
+    </select>
+    <resultMap id="BoxApple2" type="Box">
+        <collection property="apples" ofType="com.apple.pojo.Apple" javaType="arraylist" select="getAppleByBoxid" column="id"/>
+    </resultMap>
+    <select id="getAppleByBoxid" resultType="apple">
+        select *
+        from mybatis.apple
+        where boxid = #{boxid}
+    </select>
+</mapper>
+

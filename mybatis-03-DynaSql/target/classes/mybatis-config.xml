@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+
+
+<configuration>
+
+<!--    使用属性文件-->
+    <properties resource="db.properties"/>
+<!--    使用实体类别名  alias为别名-->
+
+<!--   内置的日志 STDOUT_LOGGING 【掌握】-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+<!--        LOG4J需要依赖-->
+<!--        <setting name="logImpl" value="LOG4J"/>-->
+    </settings>
+
+
+    <typeAliases>
+        <typeAlias type="com.apple.pojo.Blog" alias="blog"/>
+    </typeAliases>
+
+
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.uname}"/>
+                <property name="password" value="${jdbc.pword}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+<!--        <mapper resource="com/apple/dao/AppleDao.xml"/>-->
+        <mapper resource="com/apple/dao/BlogMapper.xml"/>
+<!-- <mapper resource="com/apple/dao"/> 不行，必须对应到xml-->
+    </mappers>
+</configuration>

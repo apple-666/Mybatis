@@ -15,7 +15,7 @@ import java.util.List;
 public class AppleTest {
 
     @Test
-    public void come1(){
+    public void come1_1(){
         //1.连通对应的主机 获取SqlSession对象
         SqlSession sqlSession = MybatisUtil.getSqlSession();
         //2.执行SQL
@@ -31,6 +31,26 @@ public class AppleTest {
         //关闭sqlSession
         sqlSession.close();
     }
+
+
+    @Test
+    public void come1_2(){
+        //1.连通对应的主机 获取SqlSession对象
+        SqlSession sqlSession = MybatisUtil.getSqlSession();
+        //2.执行SQL
+        // 方式一：getMapper 推荐使用）
+        AppleDao appleDao = sqlSession.getMapper(AppleDao.class);
+        List<Apple> appleList = appleDao.listApple2();
+
+        System.out.println(appleList);
+//        for (Apple apple : appleList) {
+//            System.out.println(apple);
+//        }
+
+        //关闭sqlSession
+        sqlSession.close();
+    }
+
     @Test
     public void come2(){
         //1.连通对应的主机 获取SqlSession对象

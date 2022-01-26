@@ -13,14 +13,15 @@
 
 <!--   内置的日志 STDOUT_LOGGING 【掌握】-->
     <settings>
-<!--        <setting name="logImpl" value="STDOUT_LOGGING"/>-->
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
 <!--        LOG4J需要依赖-->
-        <setting name="logImpl" value="LOG4J"/>
+<!--        <setting name="logImpl" value="LOG4J"/>-->
     </settings>
 
 
     <typeAliases>
         <typeAlias type="com.apple.pojo.Apple" alias="apple"/>
+        <typeAlias type="com.apple.pojo.Box" alias="box"/>
 <!--        <typeAlias type="com.apple.pojo"/>-->
     </typeAliases>
 
@@ -39,6 +40,7 @@
 
     <mappers>
         <mapper resource="com/apple/dao/AppleDao.xml"/>
+        <mapper resource="com/apple/dao/BoxDao.xml"/>
 <!-- <mapper resource="com/apple/dao"/> 不行，必须对应到xml-->
     </mappers>
 </configuration>

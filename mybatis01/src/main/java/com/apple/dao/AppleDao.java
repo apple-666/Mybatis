@@ -1,6 +1,7 @@
 package com.apple.dao;
 
 import com.apple.pojo.Apple;
+import com.apple.pojo.Box;
 
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
 public interface AppleDao {
     //查
     List<Apple> listApple();
+    List<Apple> listApple2();
 
     //增
     int addApple(Apple apple);
@@ -32,5 +34,6 @@ public interface AppleDao {
 
     //使用模糊查询
     List<Apple> queryAppleLike(String key);
+
 
 }
