@@ -9,7 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="mybatis-02-YiDuiDuo" />
         <module name="mybatis01" />
+        <module name="mybatisYiDuiDuo" />
         <module name="mybatis-03-DynaSql" />
+        <module name="mybatisDynaSql" />
       </profile>
     </annotationProcessing>
   </component>

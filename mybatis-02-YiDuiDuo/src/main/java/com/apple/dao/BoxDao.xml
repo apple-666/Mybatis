@@ -10,7 +10,7 @@
 
 
     <!--==========================一对多 用 collection===================-->
-
+    <!--情景：查询box，box类中有list<apple> ,    -->
     <!--方法一：结果嵌套查询=====================================================-->
     <select id="getBox" resultMap="BoxApple">
         select b.id bid, b.size bsize, a.id aid, a.color acolor, a.name aname

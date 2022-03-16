@@ -9,7 +9,7 @@
 
 <!--    使用属性文件-->
     <properties resource="db.properties"/>
-<!--    使用实体类别名  alias为别名-->
+<!--    使用实体类  为别名-->
 
 <!--   内置的日志 STDOUT_LOGGING 【掌握】-->
     <settings>
